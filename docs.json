@@ -24,6 +24,7 @@
             "pages": [
               "index",
               "create-new-account",
+              "how-free-trials-work",
               "quickstart",
               "development"
             ]
