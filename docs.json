@@ -23,6 +23,7 @@
             "group": "Getting started",
             "pages": [
               "index",
+              "create-new-account",
               "quickstart",
               "development"
             ]
