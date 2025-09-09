@@ -14,6 +14,12 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "Support",
+            "pages": [
+              "help-center",
+            ]
+          },
+          {
             "group": "Getting started",
             "pages": [
               "index",
