@@ -32,8 +32,9 @@
           {
             "group": "Your Account",
             "pages": [
-              "your-account/add-or-delete-a-site",
-               "your-account/Your-Password"
+              "your-account/Add-or-delete-a-site",
+               "your-account/Your-Password",
+               "your-account/Two-Factory-Authentication"
              
             ]
           },
