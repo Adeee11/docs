@@ -32,7 +32,9 @@
           {
             "group": "Your Account",
             "pages": [
-              "your-account/add-or-delete-a-site"
+              "your-account/add-or-delete-a-site/Your-Password"
+             
+             
             ]
           },
           {
