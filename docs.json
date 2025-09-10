@@ -32,17 +32,7 @@
           {
             "group": "Your Account",
             "pages": [
-              "index",
-              "create-new-account",
-              "how-free-trials-work",
-               "Script-installation",
-               "Dashboard-explained",
-               "Dashboard-terminology",
-              "Ad-and-email-campaigns-UTMs",
-              "Sample-Privacy-Policy",
-              "DPA-Guidance?",
-              "quickstart",
-              "development"
+              "your-account/my-account"
             ]
           },
           {
