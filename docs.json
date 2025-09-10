@@ -32,8 +32,8 @@
           {
             "group": "Your Account",
             "pages": [
-              "your-account/add-or-delete-a-site/Your-Password"
-             
+              "your-account/add-or-delete-a-site",
+               "your-account/ Your-Password"
              
             ]
           },
