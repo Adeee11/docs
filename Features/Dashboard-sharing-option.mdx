@@ -1,0 +1,57 @@
+---
+title: "Dashboard sharing option"
+---
+
+By default, only the Floo Analytics account holder can view their dashboard. To make stats accessible to others, adjust sharing settings in your site options under **Preferences \> Dashboard Sharing**.
+
+## Dashboard Sharing Modes
+
+1. **Private:** The default—only the owner can access the dashboard.
+2. **Passworded:** Generate a private share URL and set a password. Anyone with both can view a “read-only” dashboard, but they cannot edit, create, or delete anything. The password can be changed at any time to restrict previous access.
+3. **Public (no password):** The dashboard becomes visible to anyone with the direct share link, ideal for making public stats or offering open transparency.
+
+User account features for more granular access and permissions are in development for future updates.
+
+add img -comment
+
+You can update the visibility of your Floo Analytics dashboard at any time, toggling between private, password-protected, or public access to suit your needs.
+
+## How to Hide the Dashboard Sharing Banner
+
+If you prefer not to show the Floo Analytics promotional banner on dashboards shared with others, simply go to **Preferences \> Account**, locate the sharing banner option, and set it to **Hidden**. This ensures a clean, branded viewing experience for anyone accessing your shared analytics.
+
+## Passwordless Shared Dashboard URL Steps
+
+1. **Set dashboard sharing to “Passworded”** in your Floo Analytics dashboard settings.
+2. **Hash your dashboard password.** For example, if your password is `badpassword`, generate its SHA256 hash using a tool such as md5decrypt.net.
+   - Example SHA256 hash:
+
+     ```
+     text
+     3693d93220b28a03d3c70bdc1cab2b890c65a2e6baff3d4a2a651b713c161c5c 
+     ```
+3. **Get your dashboard’s share URL.** It will look like:
+
+   ```
+   text
+   https://app.flooanalytics.com/share/random/your-site-name 
+   ```
+
+   Replace `random` and `your-site-name` with your actual dashboard values.
+4. **Append the password hash as a query string:**
+
+   ```
+   text
+   ?password=3693d93220b28a03d3c70bdc1cab2b890c65a2e6baff3d4a2a651b713c161c5c 
+   ```
+5. **Resulting link:**
+
+   ```
+   text
+   https://app.flooanalytics.com/share/random/your-site-name?password=3693d93220b28a03d3c70bdc1cab2b890c65a2e6baff3d4a2a651b713c161c5c 
+   ```
+
+   **Important:**
+
+- This approach only works for dashboard sharing because the password is checked as plain text for this use—not for secure user authentication.
+- Swap in your actual password’s SHA256 hash, and use the correct Share URL for your specific dashboard.

@@ -55,7 +55,9 @@
           {
             "group": "Features",
             "pages": [
-              "Features/Filtering-and-searching"
+              "Features/Filtering-and-searching",
+               "Features/Multi-Domain-Tracking",
+              "Features/Dashboard-sharing-option"
         
              
             ]
