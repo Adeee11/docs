@@ -1,5 +1,31 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Tracking Form Submission Conversions"
 ---
 
+## 1. Using the form's HTML directly
+
+Add an `onsubmit` handler:
+
+```
+xml
+<form method="post" onsubmit="floo.trackEvent('form submit');"> 
+```
+
+Replace `'form submit'` with a descriptive event name for your analytics dashboard.
+
+## 2. Using JavaScript for forms with IDs
+
+If you can't edit the HTML directly, but the form has an ID:
+
+```
+javascript
+window.addEventListener('load', (event) => {
+  document.getElementById('id-of-your-form').addEventListener('submit', () => {
+    floo.trackEvent('form submit');
+  });
+});
+```
+
+Change `'id-of-your-form'` and the event name as needed.
+
+Both methods will allow you to monitor submitted forms as tracked events in your dashboard.
