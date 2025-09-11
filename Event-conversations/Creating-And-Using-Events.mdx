@@ -1,89 +1,58 @@
 ---
 title: "Creating and Using Events"
 ---
-
 As of October 25, 2023, the legacy `trackGoal` function is deprecated for new goals/events in Floo Analytics. Existing uses of `trackGoal` will still work, but all new event tracking should follow the updated approach.
-
 ## How Events Work
-
 Events (goals/conversions) let you track user actions—like button clicks, form submissions, newsletter sign-ups, or e-commerce purchases. To define an event, you must:
-
 1. Provide the **event name** as a required field in your event tracking code.
 2. Optionally, add extra information using an options object (currently, only `_value` Passing a numeric value is supported.
-
 **Technical Note:**\
 Make sure the Floo Analytics tracking script is loaded before firing event code, and always use HTTP/HTTPS (events are not tracked locally).
-
-## Tracking Event Types and Naming Conventions 
-
+## Tracking Event Types and Naming Conventions
 Floo Analytics allows users to track a variety of events and conversions, including:
-
 - Link clicks (internal and external)
 - Page load conversions
 - 404/error page visits
 - E-commerce conversions (purchases, sign-ups, etc.)
 - Form submissions
-
 ## Event Naming Rules
-
 Event names can be chosen freely, but it is recommended to:
-
 - Avoid special characters and emojis in event names.
 - Use clear, descriptive names that are easy for the team to recognize and understand in reports.
-
 This helps maintain clarity in analytics and ensures everyone knows exactly what each tracked event represents.
-
-## Example Code for Tracking Events 
-
+## Example Code for Tracking Events
 To track a custom event with a value (such as an e-commerce cart addition), use:
-
 ```
 javascript
-floo.trackEvent('cart add', {   value: 100 // Value in cents }); 
+floo.trackEvent('cart add', {   value: 100 // Value in cents });
 ```
-
 For a simple event without any associated value (such as a newsletter signup), use:
-
 ```
 javascript
-floo.trackEvent('newsletter signup'); 
+floo.trackEvent('newsletter signup');
 ```
-
 Replace the function name (`floo.trackEvent`) with the correct API if using another analytics platform, and always use clear, descriptive event names.
-
 ## Adjusting Conversion Rate Calculation
-
 Floo Analytics allows each site to define how its conversion rate is measured. In the dashboard, navigate to:
-
 - **Settings → [Your Site Name] → Event Conversion Formula**
-
 By default, conversions are calculated as:
-
 ```
 text
-Event completions / total Page views 
+Event completions / total Page views
 ```
-
 If preferred, switch to a people-based calculation:
-
 ```
 text
-Event completions / total People 
+Event completions / total People
 ```
-
 This provides flexibility to align conversion metrics with site goals, choosing either a visit-focused or unique visitor-focused approach.
-
 ## Deleting and Blocking Events in Floo Analytics
-
 To remove an event and its data in Floo Analytics, you have two options:
-
 - **Delete:** Permanently deletes the event and all collected data for it.
 - **Delete and block:** Deletes the event data and stops any future data collection for that event name. You can later unblock the event, but previously deleted data won’t be restored.
-
 Access these controls by:
-
 1. Go to the dashboard and scroll to the Events section.
 2. Clicking **Manage events**.
 3. Finding the desired event, clicking the **ellipsis** button, and choosing **Delete** or **Delete and block**.
-
 If necessary, unblock an event later via the “Blocked Events” section at the bottom of the Event settings page.
+
