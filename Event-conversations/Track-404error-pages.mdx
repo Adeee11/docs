@@ -1,3 +1,43 @@
 ---
 title: "Track 404/error pages"
 ---
+
+When someone lands on a 404 or error page, use a dynamic event like:
+
+- `"404: /some-missing-url"`
+
+This setup allows you to see which invalid URLs users are attempting to visit. For example, if a user tries to visit `/poodcast` (a misspelled podcast page), `an`event named `404: /poodcast` would be logged.
+
+This information is valuable for finding and fixing broken links or adding helpful redirects on your site.
+
+## 1. Detect 404 via Template Page
+
+Add this script to the footer of your 404 template:
+
+```
+javascript
+window.addEventListener('load', () => {
+  const path = window.location.pathname;
+  floo.trackEvent('404: ' + path);
+});
+```
+
+This records an event named `404: /broken-path` whenever the 404 template loads.image.jpg
+
+## 2. Detect 404 via Page Title
+
+If your 404 page is recognized by its `<title>`, use:
+
+```
+javascript
+window.addEventListener('load', () => {
+  const title = document.title;
+  if (title.includes('404') || title.includes('Page Not Found')) {
+    floo.trackEvent('404: ' + window.location.pathname);
+  }
+});
+```
+
+This logs a 404 event only when the tab title indicates a "404" or "Page Not Found" error, helpful for multi-purpose error pages.image.jpg
+
+Both scripts ensure robust detection and reporting of user visits to missing pages.

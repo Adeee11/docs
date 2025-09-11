@@ -69,7 +69,8 @@
               "Event-conversations/Track-link-clicks",
               "Event-conversations/Track-external-link-clicks",
               "Event-conversations/Track-page-load-conversions",
-              "Event-conversations/Track-404error-pages"
+              "Event-conversations/Track-404error-pages",
+              "Event-conversations/Track-form-submission"
 
              
             ]
