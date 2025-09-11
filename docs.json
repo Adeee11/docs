@@ -65,7 +65,8 @@
           {
             "group": "Event conversations",
             "pages": [
-              "Event-conversations/creating-and-using-events"
+              "Event-conversations/Creating-And-Using-Events",
+              "Event-conversations/Track-link-clicks"
              
             ]
           },
