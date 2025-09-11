@@ -1,15 +1,22 @@
 ---
 title: "Tracking Link Clicks "
 ---
+
 ## 1. Inline HTML Method
+
 Add an `onclick` handler directly to your anchor (`<a>`) tag:
+
 ```
 xml
 <a href="/about" onclick="floo.trackEvent('button click');">About Us</a>
 ```
+
 This captures every click on that link as a “button click” event.
+
 ## 2. JavaScript ID-Based Method
+
 Assign an ID to your link and use JavaScript to bind the event after the page loads:
+
 ```
 xml
 <a href="/about" id="about-us-link">About us</a>
@@ -21,19 +28,24 @@ xml
   });
 </script>
 ```
+
 Change both the ID and the event name as needed.
+
 ## 3. JavaScript Class-Based Method (Not shown, but implied for multiple elements)
+
 If tracking multiple links with a common class, use JavaScript to target the class and loop over elements.
 These methods let Floo Analytics capture and report on link clicks granularly, for any part of a site.\
-Tracking Multiple Download Link Clicks by Class in Floo Analytics
-Assign a common class (e.g., `.download-link`) to all download anchors:
+Tracking Multiple Download Link Clicks by Class in Floo Analytics: Assign a common class (e.g., `.download-link`) to all download anchors:
+
 ```
 xml
 <a href="file1.pdf" class="download-link">File 1</a>
 <a href="file2.pdf" class="download-link">File 2</a>
 <a href="file3.pdf" class="download-link">File 3</a>
 ```
+
 Add a script that loops through each element with the download-link class and tracks a shared event:
+
 ```
 javascript
 window.addEventListener('load', () => {
@@ -44,6 +56,35 @@ window.addEventListener('load', () => {
   });
 });
 ```
+
 - `.download-link` This is the class selector for all download links.
 - `"file download"` Is the event name shown in the dashboard?
-You can further modify this code to record distinct event names for each file if more granular reporting is needed.
+  You can further modify this code to record distinct event names for each file if more granular reporting is needed.
+
+## Dynamic Analytics Event Tracking for File Downloads
+
+Use this script to track which file is downloaded on each click, pulling dynamic info from the link:
+
+```
+javascript
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.download-link').forEach(item => {
+    item.addEventListener('click', event => {
+      let fileName = item.getAttribute('href');
+      floo.trackEvent(`file download: ${fileName}`);
+    });
+  });
+});
+```
+
+- This records an event with the file’s URL as part of the event name.
+
+**Privacy Tip:**\
+Instead of embedding the full file path, add a custom attribute like `data-filename="File X"` to each link and then use:
+
+```
+javascript
+let fileName = item.getAttribute('data-filename'); 
+```
+
+This ensures only the intended label (not the URL) is tracked in analytics events.
