@@ -63,6 +63,13 @@
             ]
           },
           {
+            "group": "Event conversations",
+            "pages": [
+              "Event-conversations/creating-and-using-events"
+             
+            ]
+          },
+          {
             "group": "Customization",
             "pages": [
               "essentials/settings",

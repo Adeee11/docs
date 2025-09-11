@@ -1,5 +1,37 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Overview on UTMs and Campaigns for Floo Analytics"
 ---
 
+UTM parameters help track where traffic originates, identify which campaigns perform best, and allow segmentation in analytics. Floo Analytics shows every UTM used to drive traffic, letting users analyze campaign sources.
+
+To strictly protect user privacy, Floo Analytics strips out any of the following sensitive data if sent via UTM or URL:
+
+- Names or usernames
+- Email addresses
+- Phone numbers
+- Mailing addresses
+- IP addresses
+- Credit card details
+- Cookie/advertising IDs
+- Any other user-identifying information
+
+Submitting such data without explicit consent breaches Floo’s terms of service and privacy laws, risking account deletion. Always use UTMs strictly for marketing source data, never for transmitting personal information. 
+
+## UTM Attribution for Events
+
+When tracking marketing campaigns using UTMs in Floo Analytics,
+
+- Any visitor arriving via a UTM-tagged URL is assigned those UTM parameters for their entire session (regardless of the source: ad, email, social post, etc.).
+- If that visitor completes an event (like a form submission or a purchase), the event attributes back to the original UTM used, even if the action happens on a different page from the entry.
+- For campaign analysis, filter your dashboard using a specific UTM value (such as `utm_campaign=spring_sale`) to view:
+  - Which landing pages received traffic from that campaign
+  - The count of conversions or completed events resulting from visitors with that UTM
+
+This makes it possible to see the precise impact of each campaign on real business outcomes using Floo Analytics events.
+
+## Best Practices for Event-Based UTM Attribution in Floo Analytics
+
+1. **Use UTMs in all inbound links:** Add UTM parameters to every paid ad, social post, and email campaign link to enable thorough performance tracking.
+2. **Filter your dashboard by UTMs:** Segment your analytics by campaign, source, or medium to see which efforts are driving conversions through event data.
+3. **Monitor different event types:** Attribute actions such as form submissions, clicks, or purchases back to their source UTM for a complete conversion path.
+4. **Customise event conversion calculations:** Floo Analytics lets you switch conversion rate calculations from page views to distinct people, allowing more meaningful campaign success metrics. Adjust this preference in your site settings for tailored reporting.
