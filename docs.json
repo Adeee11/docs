@@ -68,7 +68,9 @@
               "Event-conversations/Creating-And-Using-Events",
               "Event-conversations/Track-link-clicks",
               "Event-conversations/Track-external-link-clicks",
-              "Event-conversations/Track-page-load-conversions"
+              "Event-conversations/Track-page-load-conversions",
+              "Event-conversations/Track-404error-pages"
+
              
             ]
           },
