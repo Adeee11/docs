@@ -1,0 +1,13 @@
+---
+title: "Track page load conversions"
+---
+
+To record an event when a certain page loads, add this script to the page:
+
+```
+javascript
+window.addEventListener('load', (event) => {   
+floo.trackEvent('checkout completed'); }); 
+```
+
+Replace `'checkout completed'` with an event name relevant to the specific conversion or milestone. The event will be reported in analytics whenever a visitor loads that page.

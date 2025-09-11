@@ -1,5 +1,66 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Tracking External Link Clicks"
 ---
 
+To monitor clicks on outbound links (e.g., affiliate or partnership links), add a special class to each link you want to track:
+
+```
+xml
+<a href="https://amazon.com/x" class="sponsored">Link to Amazon</a> 
+<a href="https://bestbuy.com/x" class="sponsored">Link to Bestbuy</a> 
+```
+
+- The class (e.g., `sponsored`) identifies which links will be tracked.
+
+Next, use JavaScript targeting this class to record events whenever users click these links. This approach allows detailed analytics on outbound traffic performance from your site.
+
+## Dynamic Event Tracking for External Sponsored Links
+
+When tracking clicks on links with the `sponsored` class, use this script:
+
+```
+javascript
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('.sponsored').forEach(item => {
+    item.addEventListener('click', event => {
+      let url = new URL(item.getAttribute('href'));
+      let domainParts = url.hostname.split('.');
+      let domainName = domainParts.length > 1 ? domainParts[domainParts.length - 2] : url.hostname;
+      floo.trackEvent(`Sponsor clicked: ${domainName}`);
+    });
+  });
+});
+```
+
+- This code finds all `.sponsored` links.
+- When any are clicked, it parses out the domain name and tracks an event like “Sponsor clicked: amazon” or “Sponsor clicked: bestbuy”.
+
+This approach enables granular reporting on which external sites are being visited from the user's website.
+
+## Track All External Link Clicks in Floo Analytics
+
+To track every click on outgoing (external) links, use this script:
+
+```
+javascript
+window.addEventListener('load', (event) => {
+  document.querySelectorAll('a').forEach(item => {
+    item.addEventListener('click', event => {
+      let linkUrl = new URL(item.getAttribute('href'), window.location.href);
+      let currentHostname = window.location.hostname;
+
+      if (linkUrl.hostname !== currentHostname) {
+        let domainParts = linkUrl.hostname.split('.');
+        let domainName = domainParts.length > 1 ? domainParts[domainParts.length - 2] : linkUrl.hostname;
+        floo.trackEvent(`External link clicked: ${domainName}`);
+      }
+    });
+  });
+});
+```
+
+- This matches all `<a>` links.
+- It determines if a link points outside your site.
+- Analytics events are dynamically reported as "External link clicked: [domain]".
+
+This provides complete tracking coverage for all users’ outbound clicks.
