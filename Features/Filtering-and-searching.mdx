@@ -1,3 +1,123 @@
 ---
 title: "Guide to Filtering and Searching"
 ---
+
+Floo Analytics allows users to narrow analytics results by applying filters on dashboard rows or using the search tool. For example, choosing a content path like `/blog` highlights only results for that section, placing “Path = /blog” at the top of your dashboard.
+
+Filters can be inverted—switch from “is” to “is not” to display data that excludes your selected value. Filtering `/blog` with “is not” reveals site visits excluding that path.
+
+This feature is powerful for breaking down metrics:
+
+- Filter by referrer, such as “Google,” to see which content draws traffic from search.
+- Filter by page, browser, device type, or location to analyze sources and user demographics.
+
+Up to ten filters can be layered for granular insights—combining `/blog` and “Google” refines data to only those blog visits referred from Google. This multi-filtering approach enables precise reporting tailored to custom audience segments.
+
+## Advanced Filters for Floo Analytics
+
+When deeper segmentation is needed, Floo Analytics offers an Advanced Filters tool so users can configure several filters in one go rather than adding each individually. Access this feature by clicking the pencil icon in the dashboard’s top-right corner to open the Advanced Filters panel.
+
+Within this panel, users can:
+
+- Create filters spanning page paths, device types, referrer sources, and more.
+- Preview which filters are about to be applied before activating.
+- Effortlessly remove or alter any individual filter.
+- Apply the entire filter set to the dashboard with a single action.
+
+A toggle next to the Advanced Filters access lets users hide or reveal currently active filters. Advanced Filters work using the same logic, operators, and options as standard filters—they simply offer a more streamlined, efficient method to manage complex queries involving multiple conditions.
+
+##  Filter Operators in Floo Analytics
+
+Floo Analytics filtering supports several operator types, helping users refine dashboard data:
+
+1. **is**  — Returns only rows matching the selected value exactly.
+2. **is not** — Shows all results except those that match the value.
+3. **is like** — Displays any result containing the search term (helpful for partial matching).
+4. **is not like** — Excludes results containing the specified term.
+5. **matching** — Includes only those matching a custom Regular Expression (regex).
+6. **not matching** — Returns all except those that satisfy the provided regex pattern.
+
+The first two operators are enabled just by clicking on a row, while the others are accessible via search or specific filter tools for advanced targeting.
+
+## Dashboard Search and Wildcards in Floo Analytics
+
+## Using Search to Refine Data
+
+The Floo Analytics dashboard search lets users filter results by entering terms into the search box (using the magnifying glass icon). For example, searching for "blog" applies a filter such as "Path is like blog," which displays all entries containing that word—including child pages, blog post titles, and translated URLs.
+
+- Change the filter from "is like" to "is not like" to exclude all data containing your search term, revealing only unrelated entries.
+- Searches are possible in content, referrer, or UTM fields to create layered filters.
+
+## Applying Wildcards for Broader Searches
+
+Wildcards—`%` or `*`—can be used to capture variations in terms. For example, searching "bl%g" will match `/blog`, `/blag`, and `/blig`. Wildcards can also be added to the beginning or end of a string for pattern-based filtering, such as `/lang/%/blog` or `/blog/%/video`, allowing fine control over which data points appear in reports.
+
+## Regex Filters in Floo Analytics
+
+Floo Analytics supports regex-based filtering for cases where basic “contains” or “equals” options aren’t enough. This allows the creation of powerful filters tailored to complex data patterns—useful for segmenting pages, referrers, or any analytics dimension.
+
+**Example:** To view only the `/about`, `/contact`, and `/pricing` pages, use this regex pattern:
+
+```
+text
+/^(about|contact|pricing)$/ 
+```
+
+This filter includes only those exact pages, ignoring all others. Regex filtering makes it possible to create highly specialized views and extract specific insights from large datasets.
+
+## Match Pages and Their Subpaths
+
+To include any URL starting with `/about`, `/contact`, or `/pricing`—such as `/about-us` or `/pricing/plans`—apply:
+
+```
+text
+/^(about|contact|pricing)
+```
+
+## Match Blog Post Date Patterns
+
+To target blog URLs organized by year and month (like `/blog/2025/07/my-post-title`), use:
+
+```
+text
+^/blog/\d{4}/\d{2}/ 
+```
+
+## Match Category Subdirectories Only
+
+To capture product or category pages, such as `/products/electronics/` without including deeper levels, try:
+
+```
+text
+^/products/[^/]+/$ 
+```
+
+These regex filters allow Floo Analytics users to create precise segments, giving full control over what data is displayed in dashboards and reports.
+
+## Exclude Admin or Login Pages with Regex
+
+To remove analytics for URLs beginning with `/admin` or `/login`, use this regex with the “not matching” filter:
+
+```
+text
+/^(admin|login)/ 
+```
+
+This ensures all visits except those to admin or login sections are counted.
+
+## Applying Regex Filters
+
+Regex-based filters can be mixed with other dashboard or API filters. Simply choose "Matching (regex)" or "Not matching (regex)" from your filter menu, insert your pattern, and combine with other criteria for complex segmentation.
+
+## Essential Filter Usage Notes
+
+1. Open linked URLs from your dashboard by holding Command (Mac) or Windows (PC) keys while clicking.
+2. Data before March 13, 2021, may not filter as intended due to updates.
+3. Up to 10 filters can be stacked for refined analysis.
+4. Event-based filters can hide data; ongoing improvements will expand these features for even greater analytic depth.
+
+## Direct/Unknown" in Floo Analytics
+
+Filtering by the “Direct/unknown” referrer shows visits where no referrer was detected (for instance, when a visitor navigates directly to the site, clicks a bookmark, or uses a privacy tool). Note that analytics data older than March 18, 2021, won’t match up in these filters, as direct/unknown values were not tracked before then.
+
+If UTM links appear under “Direct/unknown,” the visit could originate from emails, newsletters, or sources where the referral information was hidden or stripped. This helps distinguish true “direct” entries from links with intentionally hidden sources.
