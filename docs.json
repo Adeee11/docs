@@ -47,9 +47,16 @@
            {
             "group": "Script settings",
             "pages": [
-              "Script-settings/add-the-embed-script",
-              "Script-settings/Site-firewall-settings"
-              
+              "Script-settings/Add-the-embed-script",
+              "Script-settings/Advanced-embed-script-settings"
+             
+            ]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "Features/Filtering-and-searching"
+        
              
             ]
           },

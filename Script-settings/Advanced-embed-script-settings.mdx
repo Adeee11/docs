@@ -1,0 +1,101 @@
+---
+title: "Advanced-embed-script-settings"
+---
+
+## Customizing Script Loading Behavior
+
+Floo Analytics provides options for advanced script integration to maximize site performance. By default, the tracking script uses the `defer` attribute, ensuring it runs only after the main website HTML has fully loaded. This helps keep load times fast, supporting optimal search rankings.
+
+If necessary, the script tag can be modified to use `async`, but for most setups, sticking with `defer` it offers the best speed and reliability. The recommended way to add the code is:
+
+```
+xml
+<script src="https://cdn.flooanalytics.com/script.js" data-site="YOUR_SITE_ID" defer></script> 
+```
+
+This approach guarantees analytics collection without compromising visitor experience or page load efficiency.
+
+## Respecting Do Not Track Signals
+
+By default, Floo Analytics collects anonymized data from all visitors, regardless of browser DNT preferences, as no identifiable information is ever stored. To honor "Do Not Track," include `data-honor-dnt="true"` in your script tag:
+
+```
+xml
+<script src="https://cdn.flooanalytics.com/script.js" data-site="YOUR_SITE_ID" data-honor-dnt="true"></script> 
+```
+
+## Turning Off Automatic Page Tracking
+
+Standard behavior logs a page view every time the script loads. To stop automatic tracking, set `data-auto="false"` it in your embed tag. This option disables page view recording until manually triggered:
+
+```
+xml
+<script src="https://cdn.flooanalytics.com/script.js" data-site="YOUR_SITE_ID" data-auto="false"></script> 
+```
+
+These settings enable site owners to tailor analytics toward privacy and control.
+
+## Tracking for Single-Page Applications
+
+For web apps built as SPAs—where navigation occurs without full page reloads—Floo Analytics offers a universal tracking mode. The default script automatically detects whether the site uses the HTML5 History API or hash changes and adjusts accordingly:
+
+```
+xml
+<script src="https://cdn.flooanalytics.com/script.js" data-site="YOUR_SITE_ID"></script> 
+```
+
+This will record the initial load and continue monitoring navigation events. To optimize for specific routing methods, choose one of these alternatives:
+
+- For sites using only the HTML5 History API:
+
+  ```
+  xml
+  <script src="https://cdn.flooanalytics.com/script.js" data-site="YOUR_SITE_ID"></script>
+  ```
+
+  ` `
+- For hash-based routes:
+
+  ```
+  xml
+  <script src="https://cdn.flooanalytics.com/script.js" data-site="YOUR_SITE_ID"></script> 
+  ```
+
+  If you’d like to exclude the initial load from analytics, refer to earlier instructions for disabling automatic tracking.
+
+## Custom Tracking with Client-Side Scripts
+
+For developers operating single-page applications or needing detailed control over analytics, Floo Analytics allows manual pageview logging using its client-side API. After the analytics script loads, call:
+
+```
+javascript
+floo.trackPageview();
+```
+
+For deeper customization, such as specifying URLs and referrer details during navigation changes, use:
+
+```
+javascript
+floo.trackPageview({
+  url: 'https://yoursite.com/about',
+  referrer: 'https://referrer.com/source-link'
+});
+```
+
+Parameters can be included or left out according to your setup, and if only a referrer is provided, the page URL defaults to the browser’s canonical or current address. This makes Floo Analytics flexible for advanced routing and AJAX-powered applications.
+
+## Event Tracking Code for Floo Analytics
+
+Events allow Floo Analytics users to monitor specific visitor interactions such as button clicks or form submissions. The structure should match Floo’s chosen global object and syntax.
+
+**With the Floo Analytics version, such as:**
+
+```
+javascript
+floo.trackEvent('Your Event Name Here', {   value: 100 // value in cents, optional }); 
+```
+
+- Use the correct method and object name for Floo Analytics (for example, `floo` If that is the global object provided.
+- Use `'Your Event Name Here'` to specify the event’s label and set the optional value field according to Floo’s documentation.
+
+For precise syntax and advanced usage, refer to Floo Analytics’ official events documentation or support channels to ensure compatibility with their event tracking API.
