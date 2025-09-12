@@ -75,6 +75,15 @@
              
             ]
           },
+{
+            "group": "Troubleshooting",
+            "pages": [
+              "Troubleshooting/Troubleshooting Analytics Script Issues"
+              
+             
+            ]
+          },
+          
           {
             "group": "Customization",
             "pages": [

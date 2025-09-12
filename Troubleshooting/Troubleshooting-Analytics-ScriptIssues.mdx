@@ -1,0 +1,36 @@
+---
+title: "Troubleshooting Analytics Script Issues"
+---
+
+Confirm that the embed script (usually named `script.js`) is present in the page source and includes a `data-site` attribute with your correct Site ID.
+
+The script code must match exactly what appears in your analytics settings under "Embed code." If it is missing or the Site ID differs, add or correct the script on your site.
+
+If there are no script results found, add the analytics script to your pages; otherwise, tracking and real-time analytics will not work.
+
+## Common Analytics Script Configuration Issues
+
+ 1. **Embed Script Inclusion:**\
+    Make sure the embed code is present on every page and matches exactly what’s given in your site’s settings. Use browser dev tools to confirm the script loads (not shown in red in the Network tab).
+ 2. **WordPress Plugin Conflicts:**\
+    Exclude the analytics script from caching, minification, or JavaScript-combining plugins like WP Rocket or SiteGround Optimizer. These plugins often break tracking scripts unless specifically told not to.
+ 3. **SPA/Framework Injection:**\
+    If you are running a Single Page Application (SPA) or using frameworks, ensure that your tracking code is injected on every page view/navigation.
+ 4. **Content Security Policy (CSP):**\
+    Ensure your site’s CSP allows the analytics domain; otherwise, the script may be blocked.
+ 5. **Caching:**\
+    Purge your cache to ensure new scripts and settings are applied.
+ 6. **Browser Extensions:**\
+    Check if ad blockers or browser extensions are blocking the analytics script.
+ 7. **User Exclusions:**\
+    Verify that you’re not accidentally excluding your own visits (many customers do this and wonder why their traffic isn’t tracked).
+ 8. **Allowed Domains:**\
+    Double-check allowed domains in your site settings for typos, missing "www", or incorrect entries.
+ 9. **Browser Extensions:**\
+    Confirm no extensions are blocking all third-party JavaScript, which would prevent analytics from loading.
+10. **data-site Attribute:**\
+    Make sure the `<script>` tag includes a correct `data-site=""` attribute matching your analytics Site ID.
+11. **Canonical URLs:**\
+    If you only see homepage data, incorrect canonical tags might be causing issues—verify them.
+
+If all steps are checked and analytics still aren’t working, reach out to support for further help
