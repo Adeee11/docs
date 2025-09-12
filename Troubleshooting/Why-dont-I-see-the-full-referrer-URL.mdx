@@ -1,0 +1,7 @@
+---
+title: "Why don’t I see the full referrer URL?"
+---
+
+If only the homepage appears as a referrer instead of the complete path, the referring site likely has a referrer policy set to hide the full pathname. This policy affects what details can be shown in your analytics dashboard—either the complete URL or just the site’s origin.
+
+Referrer policies can be set by the referring site or, if not specified, will default to whatever policy the visitor's browser enforces. The relevant setting is found in the HTTP Referrer header (notably spelled "Referer"), which specifies what information is passed along with the page request.
