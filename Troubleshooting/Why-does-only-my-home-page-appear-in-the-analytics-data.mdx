@@ -1,5 +1,31 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Why does only my homepage appear in the analytics data?"
 ---
 
+This issue often arises if the analytics embed code was placed solely on the homepage, instead of being added to the site-wide header template. Ensure that your script is included globally, so it runs on every page.
+
+Another common cause is incorrect use of canonical link tags. If canonical tags are set up incorrectly, search engines and analytics systems may treat all pages as if they are actually the homepage, which can also impact SEO in a negative way.
+
+A frequent mistake is having the same canonical meta tag on all pages, making it appear that every page on your website is the homepage. This misconfiguration confuses analytics and search engines.
+
+For example:
+
+```
+xml
+<link rel="canonical" href="https://yoursite.com"> 
+```
+
+Be sure each page has a unique canonical tag that matches its actual URL.
+
+If the same canonical tag appears across every page, analytics and search engines will interpret all your site’s pages as the homepage. After correcting this, the analytics script will start showing stats for each unique page as intended.
+
+By default, if a canonical link is detected, the script uses the canonical URL instead of the actual page URL. This is standard behavior and aligns with what most users expect.
+
+To force the script to always use the current page’s URL (ignoring any canonical tag), simply add the attribute `data-canonical="false"` to your embed code:
+
+```
+xml
+<script src="https://cdn.usefathom.com/script.js" data-site="ABCDEFG" data-canonical="false"></script> 
+```
+
+This adjustment ensures data is collected per the current URL, regardless of canonical tags.
