@@ -1,0 +1,111 @@
+---
+title: "Why am I seeing duplicate pathnames in my analytics data?"
+---
+
+Duplicate pathnames usually mean the same page is accessible via multiple URL variants. Floo Analytics treats each unique URL (e.g., http vs https, www vs non-www, or domain/subdomain differences) as a separate page, which creates individual rows for what appears to be the same path.
+
+## How to view the full URL in your dashboard
+
+To check which specific URL was logged, hover over the pathname in the Pages section of your dashboard. The browser will show the full URL, helping you quickly identify differences like http/https, www/non-www, or domain/subdomain changes.
+
+## Common cause: Both www and non-www URLs are accessible
+
+**Symptom:** If visitors can access both `https://example.com/page` and `https://www.example.com/page` Directly, Floo Analytics will count these as different pages.
+
+**Solution:** Choose either the www or non-www version as your main domain and set up a permanent (301) redirect from the other.
+
+## Example fixes
+
+- **DNS \+ web server:** Route both domains to the server and have the secondary domain use a 301 redirect to the primary.
+- **NGINX (force non-www):**
+
+  ```
+  text
+  server {
+    listen 80;
+    server_name www.example.com;
+    return 301 https://example.com$request_uri;
+  }
+  server {
+    listen 443 ssl;
+    server_name www.example.com;
+    return 301 https://example.com$request_uri;
+    # ssl_certificate / ssl_certificate_key ...
+  }
+  ```
+- **Apache (.htaccess, force www to non-www):**
+
+  ```
+  text
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.example\.com$ [NC]
+  RewriteRule ^(.*)$ https://example.com/$1 [L,R=301]
+  ```
+
+## Common cause: Both http and https URLs are accessible
+
+**Symptom:** If both `http://example.com/page` and `https://example.com/page` work, each protocol is recorded as a separate URL in analytics.
+
+**Solution:** Redirect all HTTP traffic to HTTPS, and consider enabling HSTS for stronger security.
+
+## Example fix (NGINX, force HTTPS)
+
+```
+text
+server {
+  listen 80;
+  server_name example.com www.example.com;
+  return 301 https://$host$request_uri;
+}
+```
+
+## Handling duplicate pathnames from differing domains
+
+**Symptom:** Duplicate tracking occurs when the same path is accessed under multiple domains, such as:
+
+- `https://example.com/pricing` (production)
+- `https://staging.example.com/pricing` (staging)
+- `http://localhost:3000/pricing` (local development)
+
+**Fix options:**
+
+- **Block non-production domains:** Use Allowed Domains to filter out dev/staging traffic.
+- **Enable multi-domain reporting:** If analyzing subdomains is needed, enable Multi-domains to keep data organized.
+
+**Recommendation:** For most teams, record only production domains and exclude staging or local development domains, unless you specifically want analytics for multiple subdomains or domains together.
+
+## Canonical link doesn’t match the page URL
+
+Floo Analytics uses the canonical URL from the `<link rel="canonical" href="...">` tag if present. If the canonical URL differs from the actual page URL (through host, protocol, path, or domain mismatches), analytics data will be attributed to the canonical instead.
+
+## How to check and fix:
+
+1. View your page’s source and locate the `<link rel="canonical">` tag.
+2. Make sure the `href` matches your preferred, correct public URL—including protocol, domain, www/non-www, path, and trailing slashes.
+3. Compare the pathnames shown in Floo Analytics with the canonical value.
+
+**Fix:** Update canonical tags to match the real public URL you wish to track—this aids both accurate reporting and SEO.
+
+**Alternative:** If canonical tracking isn't desired, configure Floo Analytics to ignore canonical tags by following the provided instructions.
+
+## Verification checklist
+
+- Ensure every non-primary URL (http/https, www/non-www, subdomains) 301-redirects to your main URL.
+- Check that your canonical tags are accurate for host and path across sample pages.
+- Hover over page rows in Floo Analytics to verify full URLs.
+- Use Allowed Domains to block test/staging/local environments, or Multi-domains if tracking them intentionally.
+
+## FAQ
+
+**Will this merge my historical duplicates?**\
+No. Redirects and fixing canonicals only prevent new duplicates; past rows remain unchanged.
+
+**Do trailing slashes matter?**\
+Yes. URLs like `https://example.com/page` and `https://example.com/page/` are considered different. Choose a standard, redirect the other, and be consistent with canonicals and internal links.
+
+**Do query strings matter?**\
+No. Query strings are stripped from URLs except for UTM and `ref` parameters, which are used for attribution but do not cause separate page rows. Duplicates come from protocol/host/canonical differences, not query strings.
+
+## Still having issues?
+
+If duplicate URLs persist after following these steps, reach out to the support team with examples of the problematic URLs—especially those you see when hovering in the Pages box. They’ll help resolve any ongoing duplication issues.

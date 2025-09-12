@@ -1,0 +1,31 @@
+---
+title: "How to get CookieBot to Ignore Floo Analytics"
+---
+
+CookieBot often assumes all analytics platforms, including Floo Analytics, require cookie consent banners like Google Analytics does. However, Floo Analytics is designed as a **cookieless analytics** solution, fully **GDPR compliant,** and does **not require cookie consent notices**.
+
+While CookieBot is correct to require consent for some analytics tools, it applies a broad policy that doesn’t take privacy-focused solutions like Floo into account. Floo ensures legal compliance and user privacy without the need for disruptive consent banners, unlike many other platforms. This approach benefits both user experience and SEO.
+
+CookieBot promotes cookie banners because it’s part of their business model, but using Floo Analytics means you don’t need them—Floo’s platform keeps your website privacy-friendly without the extra hassle.
+
+## Why Floo Analytics doesn’t require a cookie consent notice
+
+Floo Analytics is built to comply with GDPR, prioritizing the privacy of EU citizens. The platform securely processes personal data (like IP addresses and user agents), and only keeps pseudo-anonymized data for around 48 hours—after which it’s deleted and cannot be brute-forced.
+
+Unlike Google Analytics, Floo does not use cookies or similar technologies with its tracking script. The software's compliance is overseen by privacy experts and lawyers, confirming that no cookie consent banner is needed due to its privacy-first approach.
+
+## How to exclude Floo Analytics from CookieBot
+
+To make CookieBot ignore Floo Analytics, add `data-cookieconsent="ignore"` to your Floo script tag. For example:
+
+```
+xml
+<script
+  src="https://cdn.usefathom.com/script.js"
+  data-site="ABCDEFG"
+  data-cookieconsent="ignore"
+  defer>
+</script>
+```
+
+This ensures your analytics tracking script functions as normal and doesn’t affect website speed or SEO.
