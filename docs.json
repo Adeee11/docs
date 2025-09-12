@@ -101,7 +101,8 @@
           {
             "group": "Integrations",
             "pages": [
-              "Integrations/Next.js"
+              "Integrations/Next.js",
+               "Integrations/Gatsby"
               
             ]
           },
