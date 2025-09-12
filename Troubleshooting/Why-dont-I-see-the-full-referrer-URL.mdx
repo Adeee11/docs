@@ -5,3 +5,71 @@ title: "Why don’t I see the full referrer URL?"
 If only the homepage appears as a referrer instead of the complete path, the referring site likely has a referrer policy set to hide the full pathname. This policy affects what details can be shown in your analytics dashboard—either the complete URL or just the site’s origin.
 
 Referrer policies can be set by the referring site or, if not specified, will default to whatever policy the visitor's browser enforces. The relevant setting is found in the HTTP Referrer header (notably spelled "Referer"), which specifies what information is passed along with the page request.
+
+## What does “Origin” mean?
+
+A URL’s "origin" consists of three components:
+
+- **Scheme:** The protocol used, such as HTTP or HTTPS.
+- **Hostname:** The domain and any subdomain (e.g., usefathom.com or app.usefathom.com).
+- **Port:** Typically 80 for HTTP or 443 for HTTPS; this is usually hidden unless a custom port is used (like [**<u>http://localhost:3000</u>**](http://localhost:3000/)).
+
+Two URLs are considered to have the same origin if these three parts match.\
+For example, both `https://usefathom.com/about` and `https://usefathom.com/security` share the same origin since their scheme, hostname, and port align.
+
+## Cross-origin examples
+
+URLs are considered cross-origin if their scheme, hostname, or port differs in any way. For example:
+
+- `https://usefathom.com/` → `https://app.usefathom.com/`
+- `https://usefathom.com/about` → `https://example.com/`
+- `https://usefathom.com/about` → `http://example.com/`
+
+Even small differences—such as subdomains, domains, or protocols—mean the origins are not the same.
+
+## Referrer Policy Types
+
+- **no-referrer:** No referrer information is sent at all.
+- **no-referrer-when-downgrade:** Referrer is sent to the same-origin, but not to less secure destinations (e.g., HTTPS to HTTP).
+- **origin:** Only the origin (protocol, domain, and port) is sent.
+- **origin-when-cross-origin:** Full URL is sent for same-origin requests; only the origin is sent for cross-origin.
+- **same-origin:** Full URL is sent for same-origin requests; only origin for cross-origin.
+- **strict-origin:** Origin is sent only if the security level (e.g., HTTPS→HTTPS, HTTP→HTTP) does not decrease, not to less secure destinations.
+- **strict-origin-when-cross-origin:** Full URL is sent when the security level is maintained and it’s same-origin; for cross-origin, only the origin is sent.
+- **unsafe-url:** The full URL is always sent, regardless of destination.
+
+## Default Referrer Policies by Browser
+
+- **Chrome:** strict-origin-when-cross-origin (version 120)
+- **Safari:** strict-origin-when-cross-origin (version 17.2)
+- **Firefox:** strict-origin-when-cross-origin (version 118)
+- **Edge:** strict-origin-when-cross-origin (version 120)
+- **Brave:** strict-origin-when-cross-origin (version 1.61)
+
+## Why aren’t Google keywords visible as a referrer?
+
+Google does not include search terms or keywords in the referrer data for privacy reasons. Keyword details can only be accessed through integration with Google Search Console, and future updates may bring this integration.
+
+## How to set a referrer policy for your site
+
+To manage your site's referrer policy, consider privacy and security needs. For most sites that don't share sensitive data through URLs, you can set the policy easily.
+
+Add the following meta tag to your site's `<head>` section, replacing the value in `content` with the desired policy:
+
+```
+xml
+<meta name="referrer" content="no-referrer-when-downgrade"/> 
+```
+
+Choose a policy from the provided list and insert it within the `content` attribute as shown.
+
+## How to set a referrer policy on your website
+
+To specify how browsers share referrer information from your site, add a `<meta>` tag to your site's `<head>` section like this:
+
+```
+xml
+<meta name="referrer" content="no-referrer-when-downgrade"/> 
+```
+
+Choose the desired referrer policy and place its name in the `content` attribute. This helps you control what URL information is sent when visitors navigate away from your page.

@@ -78,7 +78,7 @@
 {
             "group": "Troubleshooting",
             "pages": [
-              "Troubleshooting/Troubleshooting Analytics Script Issues",
+              "Troubleshooting/Troubleshooting-Analytics-Script-Issues",
                "Troubleshooting/See-Google-search-terms-keywords",
               "Troubleshooting/Can-I-add-more-than-50-sites",
               "Troubleshooting/How-to-Transfer-a-Dashboard-to-Another-Account",
@@ -91,7 +91,8 @@
               "Troubleshooting/What-are-salts-and-hashes",
               "Troubleshooting/Does-Floo-Analytics-have-a-specific-feature",
               "Troubleshooting/Why-are-UTM-parameters-I-didn’t-create-appearing",
-               "Troubleshooting/Why-don’t-I-see-the-full-referrer-URL"
+               "Troubleshooting/Why-don’t-I-see-the-full-referrer-URL",
+              "Troubleshooting/How-to-get-CookieBot-to-Ignore-Floo-Analytics"
               
 
              
