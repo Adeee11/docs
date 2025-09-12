@@ -1,0 +1,34 @@
+---
+title: "What are salts and hashes?"
+---
+
+On the Floo Analytics site, you'll often see the terms 'hashes' and 'salts.' In programming, these are techniques for transforming data into a different form to protect sensitive information.
+
+Hashes and salts are used to safeguard both customer and visitor data by making it extremely difficult to reverse-engineer the original information. This process is fundamental for ensuring digital privacy and data security.
+
+The concept of converting data so that only the intended recipient can decode it is ancient, with historical roots as far back as the Egyptians and Caesar’s encrypted messages—showing these protective practices are anything but new.
+
+## Salts and Hashes: What They Are
+
+- **Hash:** A hash is a function that transforms data into a string of numbers and letters. It’s a one-way process—data can’t be easily reversed from a hash, but hashes alone can sometimes be cracked through brute force.
+- **Salt:** A salt strengthens a hash by adding extra data to the input, so even if someone knows the hash, they can’t easily figure out the original data.
+
+## Example: Using Salts and Hashes
+
+Hashing simple strings like a name (“Luna”) generates a predictable string every time. These can often be reversed with online tools. But if you add a salt (for example, “fathom-rocks”) and hash “fathom-rocks: Luna” instead, the output is far harder to crack. Without knowing the specific salt, brute-forcing this data becomes nearly impossible, greatly enhancing security and data privacy.
+
+Salts enhance security by adding random information to data before hashing, making the resulting hash nearly impossible to crack. For example, using a salt like "fathom-rocks" with a user name turns "Luna" into "fathom-rocks: Luna" before hashing, which produces a secure result. Trying to reverse such a hash without knowing the salt is virtually impossible—even with hash-cracking tools.
+
+Floo Analytics improves on standard hashing by using a unique salt for every site, which is changed every 24 hours. This means if a salt is ever discovered, it only exposes a single site's data for one day. Additionally, with each salt unique to a site, there is no way to track someone across multiple sites. As a result, even if someone accessed the database, cracking the data would require immense computational resources, making it realistically unfeasible.
+
+## How Floo Analytics salts and hashes data
+
+To check for unique visitors, visitor information is hashed with a unique salt for each site. Even if the same person visits multiple sites using Floo Analytics, they are recorded as separate visitors due to different salts. The salt is refreshed every day, so “unique” visitor stats reset daily—someone visiting on different days is counted as a new unique.
+
+Every page visit also gets hashed with both a user signature and the path of the page. This allows the platform to accurately report traffic for individual pages while maintaining privacy.
+
+This strong approach to hashing and salting means that, even if the system were breached, breaking the hashes would be practically impossible without massive resources.
+
+## Conclusion
+
+Understanding salts and hashes—even without programming experience—shows why Floo Analytics relies on multiple, frequently changing salts and hashes. This approach protects all stored analytics data and ensures a much higher level of privacy for everyone.
